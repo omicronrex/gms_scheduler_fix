@@ -1,0 +1,6 @@
+LIBRARY DBGHELP
+
+EXPORTS
+    MiniDumpWriteDump  @1155
+    SymInitialize      @1281
+	SymFromAddr        @1213

@@ -1,6 +1,14 @@
-# gms_scheduler_fix
 Thread scheduler resolution fix for GM:Studio and GM8.1
 
-This hack works by providing a fake DBGHELP.DLL stub that sets the scheduler resolution to 1ms, providing a smooth framerate across all studio and 8.1 games. The games are unmodified and no hook/patching is done.
+This hack works by providing a fake dll stub that sets the thread scheduler resolution to 1ms, providing a smooth framerate across studio and 8.1 games. The games are not hooked or patched, so it's possible to use with steam and it should also be fine for speedrunning communities.
 
-I'm researching if it's possible to do the same thing for 8.0, however since i can't reproduce the problem myself, development is slower.
+# How to use
+Simply download DBGHELP.DLL and place it next to the game maker 8 game or the studio runner. Remember that some studio games are packed, so use a tool like 7z to unpack them (you should be able to see the game .exe, data.win and some miscellaneous data files). If a studio game is still packed it won't work.
+
+# What is scheduler resolution?
+By default, in modern Windows, the thread scheduler resolution is 10 or even ~15.4ms. This means, if a thread tries to sleep or time something, it'll get invoked in the next possible interval. A coarse resolution means threads sleep very imprecisely, leading to massive frame drops in game maker games as they fail to present frames on time. By setting a finer resolution like 1ms, we make sure the game thread is woken up on time to present every frame.
+
+# What's the catch?
+The dll we're using as a hook isn't important for the games to run, so not much really. There are concerns about more power usage by the scheduler running more often, but since we're talking about games, it wouldn't really make much of a difference in the first place since this is expected anyway.
+
+Moreover, this tool does not help with 8.0 games or issues related to the infamous gm8.x "joystick bug", or large memory allocation issues. If you still have problems with 8.0 and 8.1, consider patching them with [gm8x_fix](https://github.com/skyfloogle/gm8x_fix) version 0.3 or newer, as that fixes both the scheduler and the other issues mentioned.

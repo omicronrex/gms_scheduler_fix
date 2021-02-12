@@ -7,6 +7,9 @@ This hack works by providing a fake dll stub that sets the thread scheduler reso
 - GameMaker:Studio: all versions.
 - GameMaker:Studio 2: all versions before and not including 2.3.2, which provides an api for modifying the scheduler resolution and a more sensible default.
 
+# For developers
+If you're making a game using 8.1 or studio 1.4 rather than patching an existing game, consider using [gmsched](https://github.com/skyfloogle/gmsched) instead, as it's a much cleaner solution.
+
 # How to use
 Simply download DBGHELP.DLL and place it next to the game maker 8 game or the studio runner. Remember that some studio games are packed, so use a tool like 7z to unpack them (you should be able to see the game .exe, data.win and some miscellaneous data files). If a studio game is still packed it won't work.
 

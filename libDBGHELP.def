@@ -1,7 +1,0 @@
-EXPORTS
-    MiniDumpWriteDump = MiniDumpWriteDump@28 @1
-    MiniDumpWriteDump@28 @2
-    SymFromAddr = SymFromAddr@16 @3
-    SymFromAddr@16 @4
-    SymInitialize = SymInitialize@12 @5
-    SymInitialize@12 @6

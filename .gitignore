@@ -1,0 +1,9 @@
+DBGHELP.dll
+DBGHELP_private.h
+DBGHELP_private.rc
+DBGHELP_private.res
+DBGHELP.layout
+dllmain.o
+libDBGHELP.a
+libDBGHELP.def
+Makefile.win

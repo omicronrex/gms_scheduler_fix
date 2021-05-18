@@ -1,6 +1,6 @@
 Thread scheduler resolution fix for GM:Studio and GM8.1
 
-This hack works by providing a fake dll stub that sets the thread scheduler resolution to 1ms, providing a smooth framerate across studio and 8.1 games. The games are not hooked or patched, so it's possible to use with steam and it should also be fine for speedrunning communities. If you like my work, consider [getting me a coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QAGYURTAHCQK6)!~
+This hack works by providing a fake dll stub that sets the thread scheduler resolution to 1ms, providing a smooth framerate across studio and 8.1 games. The games are not patched, so it's possible to use with steam and it should also be fine for speedrunning communities. If you like my work, consider [getting me a coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QAGYURTAHCQK6)!~
 
 # Affected versions
 - Game Maker 8.1: all versions.

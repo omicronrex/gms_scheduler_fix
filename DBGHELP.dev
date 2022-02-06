@@ -11,7 +11,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=-DBUILDING_DLL=1_@@_
 CppCompiler=-DBUILDING_DLL=1_@@_
-Linker=--def def.def_@@_
+Linker="../../../Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32/libwinmm.a"_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -28,25 +28,25 @@ Folders=
 IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=3
-CompilerSettings=000000d100000000000000001
+CompilerSettings=000000d101000000000000001
 UnitCount=1
 
 [VersionInfo]
 Major=1
-Minor=0
+Minor=1
 Release=0
 Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=1.0.0.0
+FileVersion=1.1.0.0
 FileDescription=GM:Studio Scheduler fix github.com/omicronrex/gms_scheduler_fix
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=1.0.0.0
+ProductVersion=1.1.0.0
 AutoIncBuildNr=0
 SyncProduct=1
 
@@ -58,5 +58,5 @@ Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
-BuildCmd=
+BuildCmd=$(CPP) -c dllmain.cpp -o dllmain.o $(CXXFLAGS)
 

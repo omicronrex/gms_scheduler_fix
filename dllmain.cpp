@@ -17,39 +17,17 @@
 
 //dbghelp.dll
 #ifdef _DBGHELP
-DLLEXP12(BOOL, SymInitialize) {
-	return TRUE;
-}
-DLLEXP28(BOOL, MiniDumpWriteDump) {
-	return TRUE;
-}
-DLLEXP16(BOOL, SymFromAddr) {
-	return TRUE;
-}
-DLLEXP16(BOOL, SymGetSymFromAddr) {
-	return TRUE;
-}
-DLLEXP4(BOOL, SymSetOptions) {
-	return TRUE;
-}
-DLLEXP4(DWORD, SymGetOptions) {
-	return 0;
-}
-DLLEXP12(DWORD, WNetGetConnectionA) {
-	return 0;
-}
-DLLEXP24(DWORD, SymLoadModule64) {
-	return 4096;
-}
-DLLEXP12(BOOL, SymGetModuleInfo64) {
-	return TRUE;
-}
-DLLEXP16(BOOL, SymGetLineFromAddr64) {
-	return TRUE;
-}
-DLLEXP16(BOOL, SymGetSymFromAddr64) {
-	return TRUE;
-}
+DLLEXP12(BOOL, SymInitialize) {return TRUE;}
+DLLEXP28(BOOL, MiniDumpWriteDump) {return TRUE;}
+DLLEXP16(BOOL, SymFromAddr) {return TRUE;}
+DLLEXP16(BOOL, SymGetSymFromAddr) {return TRUE;}
+DLLEXP4(BOOL, SymSetOptions) {return TRUE;}
+DLLEXP4(DWORD, SymGetOptions) {return 0;}
+DLLEXP12(DWORD, WNetGetConnectionA) {return 0;}
+DLLEXP24(DWORD, SymLoadModule64) {return 4096;}
+DLLEXP12(BOOL, SymGetModuleInfo64) {return TRUE;}
+DLLEXP16(BOOL, SymGetLineFromAddr64) {return TRUE;}
+DLLEXP16(BOOL, SymGetSymFromAddr64) {return TRUE;}
 #endif
 
 //winspool.drv

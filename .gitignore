@@ -7,3 +7,9 @@ dllmain.o
 libDBGHELP.a
 libDBGHELP.def
 Makefile.win
+DBGHELP.exp
+DBGHELP.lib
+dllmain.obj
+winspool.drv
+winspool.exp
+winspool.lib

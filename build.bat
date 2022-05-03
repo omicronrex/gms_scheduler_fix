@@ -32,6 +32,7 @@ REM   /DLL = Output dynamic link library
 REM   /OUT:<filename> = Make <filename> the output filename
 cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_DBGHELP /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll
 cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_WINSPOOL /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv
+del DBGHELP.exp DBGHELP.lib winspool.exp winspool.lib dllmain.obj
 goto l_end
 
 :l_clean

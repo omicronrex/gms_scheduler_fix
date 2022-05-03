@@ -34,12 +34,12 @@ DLLEXP16(BOOL, SymGetSymFromAddr64) {return TRUE;}
 #ifdef _WINSPOOL
 DLLEXP4(BOOL, ClosePrinter) {return TRUE;}
 DLLEXP24(LONG, DocumentPropertiesW) {return 0;}
-DLLEXP28(BOOL, EnumPrintersW) {return TRUE;}
-DLLEXP8(BOOL, GetDefaultPrinterW) {return TRUE;}
-DLLEXP12(BOOL, OpenPrinterW) {return TRUE;}
 DLLEXP24(LONG, DocumentPropertiesA) {return 0;}
+DLLEXP28(BOOL, EnumPrintersW) {return TRUE;}
 DLLEXP28(BOOL, EnumPrintersA) {return TRUE;}
+DLLEXP8(BOOL, GetDefaultPrinterW) {return TRUE;}
 DLLEXP8(BOOL, GetDefaultPrinterA) {return TRUE;}
+DLLEXP12(BOOL, OpenPrinterW) {return TRUE;}
 DLLEXP12(BOOL, OpenPrinterA) {return TRUE;}
 #endif
 

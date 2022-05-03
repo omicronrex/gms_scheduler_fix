@@ -18,6 +18,8 @@ REM   /Gw = Optimize global data
 REM   /GR- = Disable runtime type information
 REM   /fp:except- = Disable floating point exceptions
 REM   /DNDEBUG = Define NDEBUG to signify release build
+REM   /D_DBGHELP = Define _DBGHELP in source
+REM   /D_WINSPOOL = Define _WINSPOOL in source
 REM
 REM Linker options:
 REM   /LTCG = Enable link-time code generation
@@ -25,5 +27,5 @@ REM   /ENTRY:DllMain = Make DllMain the entry point
 REM   /NODEFAULTLIB = Don't link with the CRT
 REM   /DLL = Output dynamic link library
 REM   /OUT:<filename> = Make <filename> the output filename
-cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll
-cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv
+cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_DBGHELP /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll
+cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_WINSPOOL /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv

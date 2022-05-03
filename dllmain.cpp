@@ -16,6 +16,7 @@
 #define DLLEXP28(_type, _funcname) DLLEXP(_type, _funcname, 28)(int,int,int,int,int,int,int)
 
 //dbghelp.dll
+#ifdef _DBGHELP
 DLLEXP12(BOOL, SymInitialize) {
 	return TRUE;
 }
@@ -49,8 +50,10 @@ DLLEXP16(BOOL, SymGetLineFromAddr64) {
 DLLEXP16(BOOL, SymGetSymFromAddr64) {
 	return TRUE;
 }
+#endif
 
 //winspool.drv
+#ifdef _WINSPOOL
 DLLEXP4(BOOL, ClosePrinter) {return TRUE;}
 DLLEXP24(LONG, DocumentPropertiesW) {return 0;}
 DLLEXP28(BOOL, EnumPrintersW) {return TRUE;}
@@ -60,6 +63,7 @@ DLLEXP24(LONG, DocumentPropertiesA) {return 0;}
 DLLEXP28(BOOL, EnumPrintersA) {return TRUE;}
 DLLEXP8(BOOL, GetDefaultPrinterA) {return TRUE;}
 DLLEXP12(BOOL, OpenPrinterA) {return TRUE;}
+#endif
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 {

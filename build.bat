@@ -45,3 +45,5 @@ del DBGHELP.dll DBGHELP.exp DBGHELP.lib winspool.drv winspool.exp winspool.lib d
 goto l_end
 
 :l_end
+REM Don't keep variable set between multiple runs
+set DBGHELP_DEL_EXTRA_FILES=YES

@@ -4,6 +4,9 @@ REM Stub DBGHELP.DLL and winspool.drv build script, must be run
 REM from command prompt with microsoft development tools
 REM (cl, dumpbin, link, etc.)
 
+REM Let the user clean the build directory
+if "%1"=="clean" goto l_clean
+
 REM Compiler options:
 REM   /TP = C++ input
 REM   /W2 = Warning level 2
@@ -29,3 +32,10 @@ REM   /DLL = Output dynamic link library
 REM   /OUT:<filename> = Make <filename> the output filename
 cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_DBGHELP /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll
 cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_WINSPOOL /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv
+goto l_end
+
+:l_clean
+del DBGHELP.dll DBGHELP.exp DBGHELP.lib winspool.drv winspool.exp winspool.lib dllmain.obj
+goto l_end
+
+:l_end

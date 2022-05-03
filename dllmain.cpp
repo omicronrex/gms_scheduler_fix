@@ -1,73 +1,47 @@
-#define WNetGetConnectionA WNetGetConnectionA_orig
 #include <windows.h>
-#undef WNetGetConnectionA
-#define DLLEXP extern "C" __declspec(dllexport) __stdcall
+
+// We need to export very specific symbol names,
+// and name mangling gets in the way of that, so override
+// the name mangler with an explicit EXPORT option
+#define DLLEXP(_type, _funcname, _argsize) \
+	__pragma(comment (linker, "/EXPORT:" #_funcname "=_" #_funcname "_overload@" #_argsize)); \
+	extern "C" _type __stdcall _funcname ## _overload
+
+#define DLLEXP4(_type, _funcname) DLLEXP(_type, _funcname, 4)(int)
+#define DLLEXP8(_type, _funcname) DLLEXP(_type, _funcname, 8)(int,int)
+#define DLLEXP12(_type, _funcname) DLLEXP(_type, _funcname, 12)(int,int,int)
+#define DLLEXP16(_type, _funcname) DLLEXP(_type, _funcname, 16)(int,int,int,int)
+#define DLLEXP20(_type, _funcname) DLLEXP(_type, _funcname, 20)(int,int,int,int,int)
+#define DLLEXP24(_type, _funcname) DLLEXP(_type, _funcname, 24)(int,int,int,int,int,int)
+#define DLLEXP28(_type, _funcname) DLLEXP(_type, _funcname, 28)(int,int,int,int,int,int,int)
 
 //dbghelp.dll
-DLLEXP BOOL SymInitialize(void* a, void* b, void* c) {
-	return TRUE;
-}
-DLLEXP BOOL MiniDumpWriteDump(void* a, void* b, void* c, void* d, void* e, void* f, void* g) {
-	return TRUE;
-}
-DLLEXP BOOL SymFromAddr(void* a, void* b, void* c, void* d) {
-	return TRUE;
-}
-DLLEXP BOOL SymGetSymFromAddr(void* a, void* b, void* c, void* d) {
-	return TRUE;
-}
-DLLEXP BOOL SymSetOptions(void* a) {
-	return TRUE;
-}
-DLLEXP DWORD SymGetOptions(void* a) {
-	return 0;
-}
-DLLEXP DWORD WNetGetConnectionA(void* a, void* b, void* c) {
-	return 0;
-}
-DLLEXP DWORD SymLoadModule64(void* a, void* b, void* c, void* d, void* e, void* f) {
-	return 4096;
-}
-DLLEXP BOOL SymGetModuleInfo64(void* a, void* b, void* c) {
-	return TRUE;
-}
-DLLEXP BOOL SymGetLineFromAddr64(void* a, void* b, void* c, void* d) {
-	return TRUE;
-}
-DLLEXP BOOL SymGetSymFromAddr64(void* a, void* b, void* c, void* d) {
-	return TRUE;
-}
-
-
-#define ClosePrinter ClosePrinter_orig
-#undef ClosePrinter
-#define DocumentPropertiesW DocumentPropertiesW_orig
-#undef DocumentPropertiesW
-#define EnumPrintersW EnumPrintersW_orig
-#undef EnumPrintersW
-#define GetDefaultPrinterW GetDefaultPrinterW_orig
-#undef GetDefaultPrinterW
-#define OpenPrinterW OpenPrinterW_orig
-#undef OpenPrinterW
-#define DocumentPropertiesA DocumentPropertiesA_orig
-#undef DocumentPropertiesA
-#define EnumPrintersA EnumPrintersA_orig
-#undef EnumPrintersA
-#define GetDefaultPrinterA GetDefaultPrinterA_orig
-#undef GetDefaultPrinterA
-#define OpenPrinterA OpenPrinterA_orig
-#undef OpenPrinterA
+#ifdef _DBGHELP
+DLLEXP12(BOOL, SymInitialize) {return TRUE;}
+DLLEXP28(BOOL, MiniDumpWriteDump) {return TRUE;}
+DLLEXP16(BOOL, SymFromAddr) {return TRUE;}
+DLLEXP16(BOOL, SymGetSymFromAddr) {return TRUE;}
+DLLEXP4(BOOL, SymSetOptions) {return TRUE;}
+DLLEXP4(DWORD, SymGetOptions) {return 0;}
+DLLEXP12(DWORD, WNetGetConnectionA) {return 0;}
+DLLEXP24(DWORD, SymLoadModule64) {return 4096;}
+DLLEXP12(BOOL, SymGetModuleInfo64) {return TRUE;}
+DLLEXP16(BOOL, SymGetLineFromAddr64) {return TRUE;}
+DLLEXP16(BOOL, SymGetSymFromAddr64) {return TRUE;}
+#endif
 
 //winspool.drv
-DLLEXP WINBOOL ClosePrinter(HANDLE a) {return TRUE;}
-DLLEXP LONG DocumentPropertiesW(HWND a, HANDLE b, LPWSTR c, PDEVMODEW d, PDEVMODEW e, DWORD f) {return 0;}
-DLLEXP WINBOOL EnumPrintersW(DWORD a, LPWSTR b, DWORD c, LPBYTE d, DWORD e, LPDWORD f, LPDWORD g) {return TRUE;}
-DLLEXP WINBOOL GetDefaultPrinterW(LPWSTR a, LPDWORD b) {return TRUE;}
-DLLEXP WINBOOL OpenPrinterW(LPWSTR a, LPHANDLE b, LPPRINTER_DEFAULTSW c) {return TRUE;}
-DLLEXP LONG DocumentPropertiesA(HWND a, HANDLE b, LPSTR c, PDEVMODEA d, PDEVMODEA e, DWORD f) {return 0;}
-DLLEXP WINBOOL EnumPrintersA(DWORD a, LPSTR b, DWORD c, LPBYTE d, DWORD e, LPDWORD f, LPDWORD g) {return TRUE;}
-DLLEXP WINBOOL GetDefaultPrinterA(LPSTR a, LPDWORD b) {return TRUE;}
-DLLEXP WINBOOL OpenPrinterA(LPSTR a, LPHANDLE b, LPPRINTER_DEFAULTSA c) {return TRUE;}
+#ifdef _WINSPOOL
+DLLEXP4(BOOL, ClosePrinter) {return TRUE;}
+DLLEXP24(LONG, DocumentPropertiesW) {return 0;}
+DLLEXP24(LONG, DocumentPropertiesA) {return 0;}
+DLLEXP28(BOOL, EnumPrintersW) {return TRUE;}
+DLLEXP28(BOOL, EnumPrintersA) {return TRUE;}
+DLLEXP8(BOOL, GetDefaultPrinterW) {return TRUE;}
+DLLEXP8(BOOL, GetDefaultPrinterA) {return TRUE;}
+DLLEXP12(BOOL, OpenPrinterW) {return TRUE;}
+DLLEXP12(BOOL, OpenPrinterA) {return TRUE;}
+#endif
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 {

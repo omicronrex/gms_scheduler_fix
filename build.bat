@@ -33,8 +33,9 @@ REM   /ENTRY:DllMain = Make DllMain the entry point
 REM   /NODEFAULTLIB = Don't link with the CRT
 REM   /DLL = Output dynamic link library
 REM   /OUT:<filename> = Make <filename> the output filename
-cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_DBGHELP /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll
-cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_WINSPOOL /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv
+REM   /INCREMENTAL:NO = Disable incremental linkage
+cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_DBGHELP /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:DBGHELP.dll /INCREMENTAL:NO
+cl.exe dllmain.cpp /TP /W2 /WX /nologo /fp:fast /GS- /EHa- /O1 /GL /Gw /GR- /fp:except- /DNDEBUG /D_WINSPOOL /link /LTCG /ENTRY:DllMain /NODEFAULTLIB winmm.lib /DLL /OUT:winspool.drv /INCREMENTAL:NO
 
 if not "%DBGHELP_DEL_EXTRA_FILES%"=="NO" del DBGHELP.exp DBGHELP.lib winspool.exp winspool.lib dllmain.obj
 
